@@ -8,7 +8,7 @@
   <ProviderName>Contoso</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="NoDiT - Server hosted."/>
-  <Description DefaultValue="A security Office Add-in that coverts E-Mails into image format."/>
+  <Description DefaultValue="A security Office Add-in that coverts text into image format."/>
   <IconUrl DefaultValue="https://sebastianrix.github.io/Hosting-Outlook_Addin_Prototype/assets/icon-32.png"/>
   <HighResolutionIconUrl DefaultValue="https://sebastianrix.github.io/Hosting-Outlook_Addin_Prototype/assets/icon-64.png"/>
   <SupportUrl DefaultValue="https://learn.microsoft.com/office/dev/add-ins/overview/office-add-in-code-samples"/>
