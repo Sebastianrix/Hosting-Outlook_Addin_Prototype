@@ -1,10 +1,11 @@
-<!-- Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT License. -->
 <!DOCTYPE html>
 <html>
 
 <head>
     <!-- Office JavaScript API -->
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    <!-- p5.js library -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.min.js"></script>
 </head>
 
 <body>
@@ -41,6 +42,20 @@
                 }
             }
         );
+    }
+
+    // p5.js setup function
+    function setup() {
+        let canvas = createCanvas(400, 400);
+        canvas.parent(document.body); // Attach the canvas to the body
+        background(220);
+        drawCircle();
+    }
+
+    // Function to draw a circle
+    function drawCircle() {
+        fill(0, 102, 153);
+        ellipse(200, 200, 100, 100);
     }
 
 </script>
