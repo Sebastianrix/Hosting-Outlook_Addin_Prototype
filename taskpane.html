@@ -12,18 +12,21 @@
 </head>
 
 <body>
-    <p>This add-in will insert the text 'Hello world!' in a new message.</p>
-    <button id="helloButton">Say hello</button>
+    <p>This add-in will insert your text as a image!</p>
+    <button id="NoDiT_Button">Say hello</button>
+
+
+
 
     <!-- The following image URL tracks diagnostic data for this sample add-in. Please remove the image tag if you reuse this sample in your own code project. -->
-    <img src="https://pnptelemetry.azurewebsites.net/pnp-officeaddins/samples/outlook-add-in-hello-world-run" />
+    
 </body>
 
 <script>
 
     Office.onReady((info) => {
         if (info.host === Office.HostType.Outlook) {
-            document.getElementById("helloButton").onclick = sayHello;
+            document.getElementById("NoDiT_Button").onclick = sayHello;
         }
     });
 
@@ -33,7 +36,7 @@
     function sayHello() {
         generatePDF();
         Office.context.mailbox.item.body.setAsync(
-            "Hello earth!",
+            "Hello earth! Place Holder Place Holder Place Holder Place Holder Place Holder Place Holder Place Holder Place Holder Place Holder Place Holder Place Holder Place Holder Place Holder Place Holder Place Holder ",
             {
                 coercionType: "html", // Write text as HTML
             },

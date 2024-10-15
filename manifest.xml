@@ -7,8 +7,8 @@
   <Version>1.0.0.0</Version>
   <ProviderName>Contoso</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Hello world"/>
-  <Description DefaultValue="A simple hello world Office Add-in."/>
+  <DisplayName DefaultValue="NoDiT - Server hosted."/>
+  <Description DefaultValue="A security Office Add-in that coverts E-Mails into image format."/>
   <IconUrl DefaultValue="https://sebastianrix.github.io/Hosting-Outlook_Addin_Prototype/assets/icon-32.png"/>
   <HighResolutionIconUrl DefaultValue="https://sebastianrix.github.io/Hosting-Outlook_Addin_Prototype/assets/icon-64.png"/>
   <SupportUrl DefaultValue="https://learn.microsoft.com/office/dev/add-ins/overview/office-add-in-code-samples"/>
@@ -84,11 +84,11 @@
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="CommandsGroup.Label" DefaultValue="Contoso Add-in"/>
-        <bt:String id="TaskpaneButton.Label" DefaultValue="Hello world"/>
-        <bt:String id="TaskpaneButton.SupertipTitle" DefaultValue="Hello world"/>
+        <bt:String id="TaskpaneButton.Label" DefaultValue="NoDiT"/>
+        <bt:String id="TaskpaneButton.SupertipTitle" DefaultValue="NoDiT"/>
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="TaskpaneButton.SupertipText" DefaultValue="Open the Hello world add-in"/>
+        <bt:String id="TaskpaneButton.SupertipText" DefaultValue="Open the NoDiT add-in"/>
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
