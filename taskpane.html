@@ -6,6 +6,9 @@
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
     <!-- p5.js library -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.min.js"></script>
+    <!-- jsPDF library -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
 </head>
 
 <body>
@@ -28,6 +31,7 @@
      * Writes 'Hello world!' to a new message body.
      */
     function sayHello() {
+        generatePDF();
         Office.context.mailbox.item.body.setAsync(
             "Hello earth!",
             {
@@ -38,6 +42,7 @@
             function (asyncResult) {
                 if (asyncResult.status ==
                     Office.AsyncResultStatus.Failed) {
+
                     write(asyncResult.error.message);
                 }
             }
@@ -56,6 +61,16 @@
     function drawCircle() {
         fill(0, 102, 153);
         ellipse(200, 200, 100, 100);
+    }
+
+    // jsPDF function to create a PDF
+    
+    // Function to generate a PDF using jsPDF
+    function generatePDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        doc.text("Hello, this is a test PDF!", 10, 10);
+        doc.save("test.pdf");
     }
 
 </script>
