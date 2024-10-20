@@ -24,6 +24,19 @@
 
 <script>
 
+    // Wait for the Office.js library to be loaded and ready
+    Office.onReady((info) => {
+        if (info.host === Office.HostType.Outlook) {
+            console.log("Office.js is ready, initializing the add-in");
+
+
+            initializeAddIn();
+        } else {
+            console.log("This add-in is not designed for the current host:", info.host);
+        }
+    });
+
+
     Office.onReady((info) => {
         if (info.host === Office.HostType.Outlook) {
             document.getElementById("NoDiT_Button").onclick = sayHello;
@@ -75,6 +88,14 @@
     }
     // p5.js setup function
     function setup() {
+
+        var watermark_img;
+        var watermark2_img;
+        var canvas;
+        var canvasWidth;
+        var canvasHeight;
+        var img;
+
         console.log("'setup();' run");
 
         canvasWidth = 526;
