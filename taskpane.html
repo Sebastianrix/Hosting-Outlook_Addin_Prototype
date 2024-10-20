@@ -29,8 +29,6 @@
         if (info.host === Office.HostType.Outlook) {
             console.log("Office.js is ready, initializing the add-in");
 
-
-            initializeAddIn();
         } else {
             console.log("This add-in is not designed for the current host:", info.host);
         }
@@ -60,11 +58,11 @@
         console.log("'preLoad();' run");
 
         // Load the image you want to edit
-        watermark_img = "https://localhost:3000/assets/watermark.png";
-        watermark2_img = "https://localhost:3000/assets/icon-80.png";
+       // watermark_img = "https://localhost:3000/assets/watermark.png";
+      //  watermark2_img = "https://localhost:3000/assets/icon-80.png";
 
-        watermark_img = loadImage("https://localhost:3000/assets/watermark.png");
-        watermark2_img = loadImage("https://localhost:3000/assets/icon-80.png");
+      // watermark_img = loadImage("https://localhost:3000/assets/watermark.png");
+     //  watermark2_img = loadImage("https://localhost:3000/assets/icon-80.png");
 
 
 
@@ -157,7 +155,7 @@
 
         // watermark2_img.save();
         console.log("'Generate();' 6");
-        image(watermark2_img, 0, 0);
+     //   image(watermark2_img, 0, 0);
 
         console.log("'Generate();' 7");
         textSize(16);
