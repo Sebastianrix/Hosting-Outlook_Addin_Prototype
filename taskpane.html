@@ -18,7 +18,7 @@
 
 
 
-    <!-- The following image URL tracks diagnostic data for this sample add-in. Please remove the image tag if you reuse this sample in your own code project. -->
+   
     
 </body>
 
@@ -51,29 +51,149 @@
             }
         );
     }
+    function Preload() {
+        console.log("'preLoad();' run");
 
+        // Load the image you want to edit
+        watermark_img = "https://localhost:3000/assets/watermark.png";
+        watermark2_img = "https://localhost:3000/assets/icon-80.png";
+
+        watermark_img = loadImage("https://localhost:3000/assets/watermark.png");
+        watermark2_img = loadImage("https://localhost:3000/assets/icon-80.png");
+
+
+
+        canvasWidth = 526;
+        canvasHeight = 785;
+        canvas = createCanvas(canvasWidth, canvasHeight);
+        console.log("The canvas is: " + canvas);
+        const appContainer = document.getElementById("app-container");
+        appContainer.appendChild(canvas.elt);
+        canvas.elt.style.display = "block";
+        canvas.elt.style.margin = "auto";
+
+    }
     // p5.js setup function
     function setup() {
-        let canvas = createCanvas(400, 400);
-        canvas.parent(document.body); // Attach the canvas to the body
-        background(220);
-        drawCircle();
+        console.log("'setup();' run");
+
+        canvasWidth = 526;
+        canvasHeight = 785;
+        canvas = createCanvas(canvasWidth, canvasHeight);
+        console.log("The canvas is: " + canvas);
+        const appContainer = document.getElementById("app-container");
+        appContainer.appendChild(canvas.elt);
+        canvas.elt.style.display = "block";
+        canvas.elt.style.margin = "auto";
     }
 
-    // Function to draw a circle
-    function drawCircle() {
-        fill(0, 102, 153);
-        ellipse(200, 200, 100, 100);
+    function WriteText() {
+        console.log("<<<<<Force SetUp, Force PreLoad>>>>>");
+        setup();
+        Preload();
+
+
+
+
+        console.log("'WriteText();' run");
+        Office.context.mailbox.item.body.getAsync(Office.CoercionType.Text, (result) => {
+            if (result.status === Office.AsyncResultStatus.Succeeded) {
+                const emailBody = result.value;
+                // Ensure image is loaded before generating the canvas
+
+                Generate(emailBody);
+
+            }
+        });
     }
 
-    // jsPDF function to create a PDF
-    
-    // Function to generate a PDF using jsPDF
-    function generatePDF() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        doc.text("Hello, this is a test PDF!", 10, 10);
-        doc.save("test.pdf");
+    function Generate(takenText) {
+        console.log("'Generate();' run");
+        const myText = takenText;
+        const lineBreakRegex = /\r\n|\r|\n|[\u2028\u2029\u00A0-\u00FF\u2000-\u206F\u2E00-\u2E7F\\s\\S]*?(?=(?:\\d+\\.\\s|\*\\s|-\\s|[\w+]\\s|[x]\\s))/g;
+        const lines = myText.split(lineBreakRegex);
+
+        console.log("'Generate();' 1");
+        const tempCanvas = document.createElement("canvas");
+        const tempCtx = tempCanvas.getContext("2d");
+        tempCtx.font = "16px Arial";
+
+        let maxWidth = 0;
+        let maxHeight = 0;
+        for (const line of lines) {
+            const lineWidth = tempCtx.measureText(line).width;
+            maxWidth = Math.max(maxWidth, lineWidth);
+            maxHeight += 20;
+        }
+
+        console.log("'Generate();' 2");
+        const padding = 20;
+        const canvasWidthMail = maxWidth + padding * 2;
+        const canvasHeightMail = maxHeight + padding;
+
+        console.log("'Generate();' 3");
+        resizeCanvas(canvasWidthMail, canvasHeightMail);
+
+        console.log("'Generate();' 4");
+        background(255, 255, 255);
+
+        console.log("'Generate();' 5");
+        tint(255, 127);
+
+        console.log("'Generate();' 5.5");
+
+        // watermark2_img.save();
+        console.log("'Generate();' 6");
+        image(watermark2_img, 0, 0);
+
+        console.log("'Generate();' 7");
+        textSize(16);
+
+
+        console.log("'Generate();' 8");
+        fill(0);
+
+        let y = padding;
+        for (const line of lines) {
+            text(line, padding, y);
+            y += 20;
+        }
+
+        convertToImage(canvasWidthMail, canvasHeightMail);
+    }
+
+    function convertToImage(canvasWidthMail, canvasHeightMail) {
+        console.log("'convertToImage();' run");
+        console.log("Canvas.elt is: " + canvas.elt);
+        const canvasElement = canvas.elt;
+        console.log("'convertToImage();' 2");
+        const imageDataUrl = canvasElement.toDataURL();
+        console.log("Finished = " + imageDataUrl);
+        Office.context.mailbox.item.body.setAsync(
+            `<img src="${imageDataUrl}" width="${canvasWidthMail}" height="${canvasHeightMail}">`,
+            { coercionType: Office.CoercionType.Html },
+            function (result) {
+                if (result.status === Office.AsyncResultStatus.Failed) {
+                    console.error('Error setting email body: ' + result.error.message);
+                } else {
+                    console.log('Email body set with image.');
+                }
+            }
+        );
+    }
+
+    function initializeAddIn() {
+        console.log("Initializing the add-in");
+        const helloButton = document.getElementById("helloButton");
+        if (helloButton) {
+            console.log("Found the 'helloButton' element");
+            helloButton.onclick = () => {
+                console.log("'helloButton' clicked");
+                WriteText();
+            };
+        } else {
+            console.error("Could not find the 'helloButton' element");
+        }
     }
 
 </script>
