@@ -9,6 +9,8 @@ var img;
 Office.onReady((info) => {
     if (info.host === Office.HostType.Outlook) {
         console.log("Office.js is ready, initializing the add-in");
+
+        myPreloadSetup();
         initializeAddIn();
     } else {
         console.log("This add-in is not designed for the current host:", info.host);
