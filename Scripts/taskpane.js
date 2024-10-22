@@ -18,8 +18,8 @@ Office.onReady((info) => {
 });
 function myPreloadSetup() {
     console.log("'preLoad();' run");
-    watermark_img = loadImage("https://sebastianrix.github.io/Hosting-Outlook_Addin_Prototype/assets/watermark.png");
-    watermark2_img = loadImage("https://sebastianrix.github.io/Hosting-Outlook_Addin_Prototype/assets/icon-80.png");
+ //   watermark_img = loadImage("https://sebastianrix.github.io/Hosting-Outlook_Addin_Prototype/assets/watermark.png");
+   // watermark2_img = loadImage("https://sebastianrix.github.io/Hosting-Outlook_Addin_Prototype/assets/icon-80.png");
 
     console.log("'setup();' run");
     canvasWidth = 526;
@@ -70,7 +70,7 @@ function Generate(takenText) {
     background(255, 255, 255);
     tint(255, 127);
 
-    image(watermark2_img, 0, 0);
+   // image(watermark2_img, 0, 0);
     textSize(16);
     fill(0);
 
