@@ -14,8 +14,11 @@ Office.onReady((info) => {
         console.log("This add-in is not designed for the current host:", info.host);
     }
 });
+function myPreloadSetup() {
+    console.log("'preLoad();' run");
+    watermark_img = loadImage("https://sebastianrix.github.io/Hosting-Outlook_Addin_Prototype/assets/watermark.png");
+    watermark2_img = loadImage("https://sebastianrix.github.io/Hosting-Outlook_Addin_Prototype/assets/icon-80.png");
 
-function setup() {
     console.log("'setup();' run");
     canvasWidth = 526;
     canvasHeight = 785;
@@ -26,17 +29,9 @@ function setup() {
     canvas.elt.style.margin = "auto";
 }
 
-function Preload() {
-    console.log("'preLoad();' run");
-    watermark_img = loadImage("https://sebastianrix.github.io/Hosting-Outlook_Addin_Prototype/assets/watermark.png");
-    watermark2_img = loadImage("https://sebastianrix.github.io/Hosting-Outlook_Addin_Prototype/assets/icon-80.png");
-
- //   setup();  // Run the canvas setup
-}
 
 function WriteText() {
-    console.log("<<<<<Force SetUp, Force PreLoad>>>>>");
-   // Preload();
+   
 
     console.log("'WriteText();' run");
     Office.context.mailbox.item.body.getAsync(Office.CoercionType.Text, (result) => {
